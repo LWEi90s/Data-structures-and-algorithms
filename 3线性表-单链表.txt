@@ -1,0 +1,117 @@
+1.
+//用代码定义一个单链表
+
+typedef struct LNode{//定义单链表结点类型
+    EleType data;//每个节点存放一个数据元素
+    struct LNode *next;//指针指向下一个节点
+}LNode, *LinkList;
+
+//取出L中第i个元素，并返回p
+LNode * GetElem(LinkList L, int i){//LNode *强调的是返回的一个节点， LinkList强调这是一个单链表 ；两个可以互换
+    int j=1;
+    LNode*P=L.next;
+    if(i==0){
+        return L;
+    }
+    if(i<1)
+        return NULL;
+    while(p!=NULL&&j<i){
+        p=p.next;
+        j++;
+    }
+    return p;
+}
+
+2.
+#include<stdio.h>
+#include<stdlib.h>
+//头插法建立单链表的算法
+
+LinkList List_HeadInsert(LinkList &L){//建立逆向的单链表
+    LNode*s;
+    int x;
+    L=(LinkList)mallor(sizeof(LNode));//创建头结点
+    L->next=NULL;//初始为空链表
+    scanf("%d",&x);
+    while(x!=9999){//输入9999表示结束
+        S=(LinkList)mallor(sizeof(LNode));//创建新节点
+        S->data=x;
+        S.next=L.next;
+        L.next=S;
+        scanf("%d",&x);
+    }
+    return L;
+}
+
+3.
+//单链表的读取 初始条件：顺序线性表L已存在，1<=i<=ListLength(L);
+
+//操作结果：用e返回L中第i个数据元素的值
+
+Status GetElem(LinkList L,GetType *e){
+    int j=1;
+    LinkList p;//声明一节点p
+    p=L->data;
+    while(p && j<i){
+        p=p->next;
+        j++;
+    }
+    if(!p||j>i){
+        return ERROR;
+    }
+    *e=p->data;
+    return OK;
+    
+}
+
+4.单链表插入
+//单链表的插入 初始条件：顺序线性表L已存在，1<=i<=ListLength(L);
+
+//操作结果：在L中第i个位置之前插入新的数据元素e,L的长度+1
+
+Status GetElem(LinkList L,GetType *e){
+    int j=1;
+    LinkList p，s;//声明一节点p，s
+    p=L->data;
+    while(p && j<i){//寻找第i个节点，遍历链表
+        p=p->next;
+        ++j;
+    }
+    if(!p||j>i){//若链表末尾为空，则表示第i个元素不存在
+        return ERROR;
+    }
+   
+    s=(LinkList)mallor(sizeof(Node));//若查找成功，在系统中生成一个空节点s;
+    s->data=e;// 将数据元素e赋值为s->data
+    s->next=p->next;//将p的后继节点赋值给s的后继
+    p->next=s;//将s赋值给p的后继
+    
+    return OK;
+    
+}
+
+5.
+//单链表的删除 初始条件：顺序线性表L已存在，1<=i<=ListLength(L);
+
+//操作结果：删除L中第i个元素，并用e返回其值,L的长度-1
+
+Status ListDelete(LinkList *L,int i, ElemType *e){
+    int j=1;
+    LinkList p，q;//声明一节点p，s
+    p=L->data;
+    while(p && j<i){//寻找第i个元素，遍历链表
+        p=p->next;
+        ++j;
+    }
+    if(!(p->next)||j>i){//若链表末尾为空，则表示第i个元素不存在
+        return ERROR;
+    }
+   
+    q=p->next;
+    p->next=q->next;
+    *e=p->next;
+    free(q);
+    
+    return OK;
+    
+}
